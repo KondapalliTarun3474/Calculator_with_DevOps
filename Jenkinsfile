@@ -3,7 +3,7 @@ pipeline {
     
     // Define environment variables for the build
     environment {
-        DOCKER_IMAGE = "DOCKER_USER/scientific-calculator" // Replace <DOCKER_USER>
+        DOCKER_IMAGE = "kondapallitarun3474/scientific-calculator" // Replace <DOCKER_USER>
         DOCKER_CREDENTIALS_ID = 'docker-hub-credentials' // ID of your Docker Hub secret credentials in Jenkins
     }
 
