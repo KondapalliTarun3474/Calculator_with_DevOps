@@ -1,0 +1,43 @@
+---
+- name: Deploy Scientific Calculator Container
+  hosts: localhost   # Targeting the local machine for deployment (per project requirement)
+  connection: local  # Use local connection method since the host is localhost
+  become: yes        # Required to run docker commands
+
+  vars:
+    docker_image_name: "DOCKER_USER/scientific-calculator" # Replace <DOCKER_USER>
+    container_name: "calculator_app"
+    host_port: 8888  # Port on the host machine
+    container_port: 8080 # Port inside the container (if the app was a web app)
+
+  tasks:
+    - name: Ensure Docker is installed (Prerequisite)
+      ansible.builtin.package:
+        name: docker.io
+        state: present
+
+    - name: Pull the latest image from Docker Hub
+      community.docker.docker_image:
+        name: "{{ docker_image_name }}"
+        tag: latest
+        source: pull
+        state: present
+
+    - name: Stop and remove the old container (if it exists)
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        state: absent
+      ignore_errors: yes
+
+    - name: Run the new container
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ docker_image_name }}:latest"
+        state: started
+        restart_policy: always
+        # Since this is a CLI application, we start it in detached mode
+        # The CMD in the Dockerfile will run the calculator script once
+        # For a persistent web app, you would uncomment the ports line below:
+        # ports:
+        #   - "{{ host_port }}:{{ container_port }}"
+        # command: python calculator.py
