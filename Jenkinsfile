@@ -12,7 +12,7 @@ pipeline {
             steps {
                 // Assuming you have configured SCM (GitHub) in the pipeline job settings
                 echo 'Cloning repository...'
-                git branch: 'main', url: 'YOUR_GITHUB_REPO_URL'
+                git branch: 'main', url: 'https://github.com/KondapalliTarun3474/Calculator_with_DevOps'
             }
         }
 
