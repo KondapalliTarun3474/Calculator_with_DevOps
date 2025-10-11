@@ -5,7 +5,7 @@
   become: yes        # Required to run docker commands
 
   vars:
-    docker_image_name: "DOCKER_USER/scientific-calculator" # Replace <DOCKER_USER>
+    docker_image_name: "kondapallitarun3474/scientific-calculator" # Replace <DOCKER_USER>
     container_name: "calculator_app"
     host_port: 8888  # Port on the host machine
     container_port: 8080 # Port inside the container (if the app was a web app)
