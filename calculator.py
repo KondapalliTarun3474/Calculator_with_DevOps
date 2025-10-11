@@ -3,6 +3,7 @@ import math
 #add2 to check CI
 #test3 to check CI#test 4 for CI#test7
 #another test for CICD
+#test by nar
 def square_root(x):
     """Calculates the square root of a non-negative number."""
     if x < 0:
