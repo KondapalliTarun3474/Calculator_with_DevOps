@@ -7,6 +7,7 @@ import math
 #anothertest
 #new test for report
 #new change##
+#new change
 def square_root(x):
     """Calculates the square root of a non-negative number."""
     if x < 0:
